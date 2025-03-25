@@ -1,0 +1,10 @@
+name: Optimizar GIFs automáticamente
+on: [push]
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: sudo apt install gifsicle
+      - run: gifsicle -O3 --colors 128 --resize-width 600 -o output.gif input.gif
+      - uses: stefanzweifel/git-auto-commit-action@v4
